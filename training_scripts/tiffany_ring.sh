@@ -7,14 +7,14 @@ jobname=lora
 # Other arguments
 export MODEL_NAME="emilianJR/chilloutmix_NiPrunedFp32Fix"
 export INSTANCE_DIR="./data/tiffany_ring"
-export OUTPUT_DIR="./exps/output_tiffany_ring"
+export OUTPUT_DIR="./exps/output_tiffany_ring_hd"
 
 srun -w ${node} --gres=gpu:1 -c 6 --mem ${mem} -p ${partition} --job-name=${jobname} lora_pti \
   --pretrained_model_name_or_path=$MODEL_NAME  \
   --instance_data_dir=$INSTANCE_DIR \
   --output_dir=$OUTPUT_DIR \
   --train_text_encoder \
-  --resolution=512 \
+  --resolution=1024 \
   --train_batch_size=1 \
   --gradient_accumulation_steps=4 \
   --scale_lr \
